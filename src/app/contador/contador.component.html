@@ -1,0 +1,15 @@
+<mat-card class="card">
+  <mat-card-title>Contador: <b>{{ contador }}</b></mat-card-title>
+  <mat-card-actions>
+    <button mat-raised-button color="warn" (click)="decrement()" matTooltip="Aumentar">
+      <mat-icon>remove</mat-icon>
+    </button>
+    <button mat-raised-button color="primary" (click)="increment()" matTooltip="Disminuir">
+      <mat-icon>add</mat-icon>
+    </button>
+    <button mat-raised-button (click)="restart()" matTooltip="Reiniciar">
+      <mat-icon>refresh</mat-icon>
+    </button>
+
+  </mat-card-actions>
+</mat-card>

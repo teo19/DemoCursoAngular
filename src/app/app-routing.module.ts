@@ -1,4 +1,4 @@
-import { Component, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { ApidemoComponent } from './apidemo/apidemo.component';
@@ -6,13 +6,13 @@ import { DemoGuard } from './demo.guard';
 
 const routes: Routes = [
   {
-    path: '',
-    component: HomeComponent
+  path: '',
+  component: HomeComponent,
   },
   {
     path: 'catdemo',
-    data: { TipoUsuario: 'CLIENTE'},
-    canActivate: [ DemoGuard ],
+    data: { tipoUsuario: 'ADMIN' },
+    canActivate: [DemoGuard],
     component: ApidemoComponent
   }
 ];

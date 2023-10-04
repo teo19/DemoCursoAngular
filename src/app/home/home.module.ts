@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-// import { BrowserModule } from '@angular/platform-browser';
-
 import { DemoPipeModule } from '../demo-pipe/demo-pipe.module';
-// import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home.component';
 import { registerLocaleData } from '@angular/common';
 import  localeJA from '@angular/common/locales/ja';
 import { FormsModule } from '@angular/forms';
 import { DemoimageDirective } from '../demoimage.directive';
 import { ColorsDirective } from '../colors.directive';
+import { ContadorModule } from '../contador/contador.module';
+import { TablaPeriodicaModule } from '../tabla-periodica/tabla-periodica.module';
+import { Tabla2Module } from '../tabla2/tabla2.module';
 registerLocaleData(localeJA, 'ja');
 
 @NgModule({
@@ -20,9 +20,10 @@ registerLocaleData(localeJA, 'ja');
   ],
   imports: [
     CommonModule,
-    // BrowserModule,
     DemoPipeModule,
-    FormsModule
+    FormsModule,
+    ContadorModule,
+    TablaPeriodicaModule
   ],
   providers: [
   ]

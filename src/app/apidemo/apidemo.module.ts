@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 import { ApidemoComponent } from './apidemo.component';
 import { FormsModule } from '@angular/forms';
 
-
-
 @NgModule({
   declarations: [
     ApidemoComponent

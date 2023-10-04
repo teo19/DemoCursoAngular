@@ -10,25 +10,23 @@ export class ApidemoComponent implements OnInit {
 
   img: string;
   statusImg: number;
+
   constructor(private apiDemoService: ApidemoService) { }
 
   ngOnInit(): void {
-    // this.apiDemoService.validarUsuario();
+    // this.apiDemoService.validaUsuario();
   }
 
-  getCatStatus(){
-    if (!this.statusImg || this.statusImg <= 0){
+  getCatStatus() {
+    if(!this.statusImg || this.statusImg <= 0)
       return;
-    }
-
+    
     this.apiDemoService.getCatStatus(this.statusImg).subscribe(res => {
       const reader = new FileReader();
       reader.readAsDataURL(res);
-
       reader.onloadend = () => {
         this.img = reader.result.toString();
       };
     });
   }
-
 }

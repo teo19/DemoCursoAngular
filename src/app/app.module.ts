@@ -17,17 +17,15 @@ import { TokenInterceptor } from './token.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
-    
-    
     // DemoPipe
   ],
   imports: [
     CommonModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HttpClientModule,
     HomeModule,
-    ApidemoModule
+    ApidemoModule,
+    HttpClientModule
     // BrowserModule,
   ],
   providers: [
