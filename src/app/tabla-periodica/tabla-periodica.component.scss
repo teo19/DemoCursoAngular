@@ -1,0 +1,23 @@
+.gas {
+    color: rgb(255,193,7) !important;
+    background-color: rgba(255,193,7, 0.2);
+}
+
+.metal {
+    color: rgb(158,158,158) !important;
+    background-color: rgba(158,158,158, 0.2);
+}
+
+.noMetal {
+    color: rgb(255,152,0) !important;
+    background-color: rgba(255,152,0, 0.2);
+}
+
+.selected {
+    font-weight: bold;
+}
+
+.column-options {
+    max-width: 60px;
+    text-align: center;
+}

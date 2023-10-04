@@ -15,8 +15,7 @@ export class TokenInterceptor implements HttpInterceptor {
   constructor() {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    const token = 'jgskbsgjkbhrknrvrtkjvrsnkvtrkjvrkjrebtybrtnyunyunuynyunvbvjkrbvjkbkjvvth'
-    
+    const token = 'kzhjkzhkcjhzkxjhvkjzxhvkjxchb';
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json;charset=utf-8'
@@ -27,17 +26,16 @@ export class TokenInterceptor implements HttpInterceptor {
     });
 
     return next.handle(reqClone).pipe(
-      catchError(this.manejarError)
+      catchError(this.errorHandler)
     );
   }
 
-  manejarError(errorResponse: HttpErrorResponse){
-    console.warn(errorResponse);
-
-    if (errorResponse.error && errorResponse.error.error){
-      return throwError(() => errorResponse.error);
+  errorHandler(errorResponse: HttpErrorResponse) {
+    console.error(errorResponse);
+    if(errorResponse.error && errorResponse.error.error) {
+      return throwError(()=> { errorResponse.error})
     } else {
-      return throwError(() => errorResponse);
+      return throwError(()=> { errorResponse})
     }
   }
 }
