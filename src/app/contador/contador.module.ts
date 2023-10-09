@@ -5,11 +5,13 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { ContadorRoutingModule } from './contador-routing.module';
 
 @NgModule({
     declarations: [ContadorComponent],
     imports: [
       CommonModule,
+      ContadorRoutingModule,
       MatCardModule,
       MatButtonModule,
       MatIconModule,
