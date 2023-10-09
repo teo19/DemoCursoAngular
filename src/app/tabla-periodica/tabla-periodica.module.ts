@@ -9,6 +9,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatMenuModule } from '@angular/material/menu';
+import { ConfirmDialogModule } from '../confirm-dialog/confirm-dialog.module';
+import { TablaPeriodicaRoutingModule } from './tabla-periodica-routing.module';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,7 @@ import { MatMenuModule } from '@angular/material/menu';
   ],
   imports: [
     CommonModule,
+    TablaPeriodicaRoutingModule,
     MatTableModule,
     ElementTypeClassModule,
     MatPaginatorModule,
@@ -23,7 +26,8 @@ import { MatMenuModule } from '@angular/material/menu';
     MatIconModule,
     MatButtonModule,
     MatTooltipModule,
-    MatMenuModule
+    MatMenuModule,
+    ConfirmDialogModule
   ],
   exports: [
     TablaPeriodicaComponent,
@@ -34,7 +38,8 @@ import { MatMenuModule } from '@angular/material/menu';
     MatIconModule,
     MatButtonModule,
     MatTooltipModule,
-    MatMenuModule
+    MatMenuModule,
+    ConfirmDialogModule
   ]
 })
 export class TablaPeriodicaModule { }

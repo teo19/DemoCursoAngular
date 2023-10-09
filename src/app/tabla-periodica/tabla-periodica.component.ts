@@ -3,6 +3,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { PeriodicElement } from '../shared/models/periodic-element.interface';
 import { ElementType } from '../shared/models/periodic-element-type.interface';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'demo-tabla-periodica',
@@ -43,7 +45,7 @@ export class TablaPeriodicaComponent implements OnInit, AfterViewInit {
   selectedRow: PeriodicElement | null;
   rowSeleccionado: boolean = false;
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.displayedColumns = [ 'selected', 'buttons', 'position', 'name', 'weight', 'symbol' ];
@@ -83,7 +85,28 @@ export class TablaPeriodicaComponent implements OnInit, AfterViewInit {
   }
 
   onDelete(row: PeriodicElement) {
-    console.log('eliminar row')
+    this.dialog.open(ConfirmDialogComponent, {
+      data : {
+        title: 'Confirmar',
+        message: `¿Desea eliminar el Elemento [${row.name}]?`
+      },
+      width: '30%',
+      disableClose: true
+    }).afterClosed().subscribe((result: any) => {
+      // console.log(result);
+      if(result?.ok)
+        this.delete(row);
+      else 
+        return;
+    })
+  }
+
+  delete(row: PeriodicElement) {
+    const index = this.lstElements.indexOf(row);
+    if(index >= 0)
+      this.lstElements.splice(index, 1);
+
+    this.refreshDatasource();
   }
 
 }
