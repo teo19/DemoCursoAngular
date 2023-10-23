@@ -12,8 +12,7 @@ import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.compone
   styleUrls: ['./tabla-periodica.component.scss']
 })
 export class TablaPeriodicaComponent implements OnInit, AfterViewInit {
-
-  lstElements: PeriodicElement[] = [
+  initElements: PeriodicElement[] = [
     { selected: false, position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H', type: ElementType.Gas },
     { selected: false, position: 2, name: 'Helium', weight: 4.0026, symbol: 'He', type: ElementType.Gas },
     { selected: false, position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li', type: ElementType.Metal },
@@ -36,6 +35,8 @@ export class TablaPeriodicaComponent implements OnInit, AfterViewInit {
     { selected: false, position: 20, name: 'Calcium', weight: 40.078, symbol: 'Ca', type: ElementType.Metal },
   ];
 
+  lstElements: PeriodicElement[] = [];
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   displayedColumns: string[] = [];
@@ -45,10 +46,17 @@ export class TablaPeriodicaComponent implements OnInit, AfterViewInit {
   selectedRow: PeriodicElement | null;
   rowSeleccionado: boolean = false;
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog) {
+    const strElementos: string = localStorage.getItem('elementos');
+    if (!strElementos)
+      localStorage.setItem('elementos', JSON.stringify(this.initElements));
+  }
 
   ngOnInit(): void {
     this.displayedColumns = [ 'selected', 'buttons', 'position', 'name', 'weight', 'symbol' ];
+    const strElementos: string = localStorage.getItem('elementos');
+    this.lstElements = strElementos ? JSON.parse(strElementos) : [];
+    this.refreshDatasource();
   }
 
   ngAfterViewInit(): void {
@@ -105,6 +113,8 @@ export class TablaPeriodicaComponent implements OnInit, AfterViewInit {
     const index = this.lstElements.indexOf(row);
     if(index >= 0)
       this.lstElements.splice(index, 1);
+
+    localStorage.setItem('elementos', JSON.stringify(this.lstElements));
 
     this.refreshDatasource();
   }

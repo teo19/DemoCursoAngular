@@ -1,5 +1,5 @@
 export enum ElementType {
-    Gas,
-    Metal,
-    NonMetal
+    Gas = 1,
+    Metal = 2,
+    NonMetal = 3
 }

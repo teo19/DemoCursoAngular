@@ -36,6 +36,10 @@ const routes: Routes = [
   {
     path: 'nuevo-elemento',
     loadChildren: () => import('./nuevo-elemento/nuevo-elemento.module').then(m => m.NuevoElementoModule)
+  },
+  {
+    path: 'editar-elemento/:id',
+    loadChildren: () => import('./nuevo-elemento/nuevo-elemento.module').then(m => m.NuevoElementoModule)
   }
 ];
 @NgModule({

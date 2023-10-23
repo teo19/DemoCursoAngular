@@ -1,1 +1,48 @@
-<p>nuevo-elemento works!</p>
+<form class="h-full" autocomplete="off" [formGroup]="formElemento" (ngSubmit)="submit()">
+    <div class="flex flex-col relative box-border h-full overflow-hidden">
+        <div class="grow-0 justify-end">
+            <div class="flex justify-end">
+                <button type="button" mat-raised-button color="accent" class="m-1" style="margin: 0.25rem;" (click)="onReset()">Reinciar</button>
+                <button type="button" mat-raised-button color="warn" class="m-1" style="margin: 0.25rem;" (click)="onClickCancel()">Cancelar</button>
+                <button type="submit" mat-raised-button color="primary" class="m-1" style="margin: 0.25rem;">Aceptar</button>
+            </div>
+        </div>
+
+        <div class="flex-auto relative overflow-y-auto h-full p-3">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                <mat-form-field appearance="fill">
+                    <mat-label>Posición</mat-label>
+                    <input type="number" matInput formControlName="posicion" max="120" required (keypress)="validateIntOnly($event)">
+                    <mat-error *ngIf="formElemento.get('posicion').hasError('required')">Campo requerido</mat-error>                  
+                    <mat-error *ngIf="formElemento.get('posicion').hasError('max')">El Campo tiene que tener un valor maximo de {{ formElemento.get('posicion').errors?.['max']?.max }}</mat-error>                  
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Nombre</mat-label>
+                    <input matInput formControlName="nombre" minlength="3" maxlength="20" required>
+                    <mat-error *ngIf="formElemento.get('nombre').hasError('required')">Campo requerido</mat-error>                  
+                    <mat-error *ngIf="formElemento.get('nombre').hasError('minlength')">El Campo tiene que tener una longitud minima de {{ formElemento.get('nombre').errors?.['minlength']?.requiredLength }} caracteres</mat-error>                   
+                    <mat-error *ngIf="formElemento.get('nombre').hasError('maxlength')">El Campo tiene que tener una longitud maxima de {{ formElemento.get('nombre').errors?.['maxlength']?.requiredLength }} caracteres</mat-error>                   
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Peso</mat-label>
+                    <input type="number" matInput formControlName="peso" maxlength="10" required (keypress)="validateNumberOnly($event)">
+                    <mat-error *ngIf="formElemento.get('peso').hasError('required')">Campo requerido</mat-error>                 
+                    <mat-error *ngIf="formElemento.get('peso').hasError('maxlength')">El Campo tiene que tener una longitud maxima de {{ formElemento.get('peso').errors?.['maxlength']?.requiredLength }} caracteres</mat-error>                      
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Simbolo</mat-label>
+                    <input matInput formControlName="simbolo" maxlength="3" required>
+                    <mat-error *ngIf="formElemento.get('simbolo').hasError('required')">Campo requerido</mat-error>                                  
+                    <mat-error *ngIf="formElemento.get('simbolo').hasError('maxlength')">El Campo tiene que tener una longitud maxima de {{ formElemento.get('simbolo').errors?.['maxlength']?.requiredLength }} caracteres</mat-error>                   
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Tipo Elemento</mat-label>
+                    <mat-select formControlName="tipoElemento" required>
+                        <mat-option *ngFor="let tipo of tipos" [value]="tipo.id">{{ tipo.nombre }}</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="formElemento.get('tipoElemento').hasError('required')">Campo requerido</mat-error>    
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+</form>
